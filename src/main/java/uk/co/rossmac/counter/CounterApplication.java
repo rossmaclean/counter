@@ -1,6 +1,7 @@
 package uk.co.rossmac.counter;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -8,8 +9,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 @SpringBootApplication
 @EnableScheduling
-@Slf4j
 public class CounterApplication {
+
+    private static final Logger log = LoggerFactory.getLogger(  CounterApplication.class);
 
     private static long count = 0;
 
@@ -17,9 +19,12 @@ public class CounterApplication {
         SpringApplication.run(CounterApplication.class, args);
     }
 
-    @Scheduled(fixedRate = 2500)
+    @Scheduled(fixedRate = 1000)
     public void count() {
-        log.info("Current count {}", count);
+        log.info("Current count " + count);
+        if (count % 2 == 0) {
+            log.error("This is an error, count is " + count);
+        }
         count++;
     }
 
