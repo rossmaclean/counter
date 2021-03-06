@@ -6,12 +6,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @EnableScheduling
+@RestController
+@RequestMapping("/api")
 public class CounterApplication {
 
-    private static final Logger log = LoggerFactory.getLogger(  CounterApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(CounterApplication.class);
 
     private static long count = 0;
 
@@ -26,6 +31,11 @@ public class CounterApplication {
             log.error("This is an error, count is " + count);
         }
         count++;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/count")
+    public long getCount() {
+        return count;
     }
 
 }
