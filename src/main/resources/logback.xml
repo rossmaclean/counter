@@ -15,8 +15,6 @@
     <appender name="GELF" class="de.siegmar.logbackgelf.GelfUdpAppender">
         <graylogHost>192.168.1.117</graylogHost>
         <graylogPort>12201</graylogPort>
-        <param name="additionalFields" value="{'environment': 'DEV', 'application': 'CounterApplication'}"/>
-        <additionalFields>{'environment': 'DEV', 'application': 'CounterApplication'}</additionalFields>
     </appender>
 
 <!--    <appender name="GELF" class="org.graylog2.log.GelfAppender">-->
