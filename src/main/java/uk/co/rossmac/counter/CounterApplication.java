@@ -24,10 +24,10 @@ public class CounterApplication {
         SpringApplication.run(CounterApplication.class, args);
     }
 
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 2000)
     public void count() {
         log.info("Current count " + count);
-        if (count % 2 == 0) {
+        if (count % 5 == 0) {
             log.error("This is an error, count is " + count);
         }
         count++;
